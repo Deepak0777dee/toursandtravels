@@ -317,7 +317,7 @@
       <p class="section-desc">A curated collection of breathtaking moments captured from our journeys around the world.</p>
     </div>
     <div class="journal-grid" data-anim="fade-up" data-delay="100">
-      <div class="journal-item" style="aspect-ratio:3/4;">
+      <div class="journal-item" style="height:100%;">
         <img src="images/hero-1.webp" alt="Tropical Paradise" loading="lazy" />
         <div class="journal-item-overlay"><div class="journal-item-caption">Tropical Paradise, Maldives</div></div>
       </div>
@@ -340,6 +340,10 @@
       <div class="journal-item" style="aspect-ratio:4/3;">
         <img src="images/dest-africa.webp" alt="African Safari" loading="lazy" />
         <div class="journal-item-overlay"><div class="journal-item-caption">Golden Safari, Africa</div></div>
+      </div>
+      <div class="journal-item span-2" style="height:100%;">
+        <img src="images/dest-panoramic.webp" alt="Panoramic Resort" loading="lazy" style="position: absolute; top: 0; left: 0;" />
+        <div class="journal-item-overlay"><div class="journal-item-caption">Overwater Bungalows, Bora Bora</div></div>
       </div>
     </div>
   </div>
@@ -434,5 +438,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+  document.querySelectorAll('.dest-filter').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.dest-filter').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.textContent.trim();
+      document.querySelectorAll('.dest-card').forEach(card => {
+        if (filter === 'All Experiences') {
+          card.style.display = '';
+        } else {
+          const meta = card.querySelector('.dest-card-meta');
+          card.style.display = (meta && meta.textContent.includes(filter)) ? '' : 'none';
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bookings — STACKLY</title>
+  <title>Clients — STACKLY</title>
   <link rel="stylesheet" href="css/style.css?v=1" />
   <style>
     body { background: var(--bg-light); display: flex; min-height: 100vh; padding-top: 0; font-family: var(--font-body); }
@@ -47,16 +47,12 @@
       .dashboard-main { margin-left: 0; }
     }
     @media (max-width: 768px) {
-      .dashboard-header { padding: 0 0.75rem; gap: 0.5rem; }
-      .dashboard-content { padding: 0.75rem; }
-      .stats-grid { gap: 0.75rem; margin-bottom: 1rem; }
-      .panel { margin-bottom: 1rem; }
-      .panel-header { padding: 1rem; }
-      .table-wrapper td, .table-wrapper th { padding: 0.75rem 1rem; }
+      .dashboard-header { padding: 0 1rem; gap: 0.5rem; }
+      .dashboard-content { padding: 1rem; }
       .user-info { max-width: 110px; overflow: hidden; }
       #userEmailDisplay, .user-name, .user-role { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .page-title { font-size: 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-bottom: 1rem; }
-      .stat-card { padding: 1rem; }
+      .page-title { font-size: 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .stat-card { padding: 1.25rem; }
     }
   </style>
 </head>
@@ -67,9 +63,9 @@
   <nav class="sidebar-nav">
     <div class="nav-label">Main</div>
     <a href="dashboard.html" class="sidebar-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg> Dashboard</a>
-    <a href="bookings.html" class="sidebar-link active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Bookings</a>
+    <a href="bookings.html" class="sidebar-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Bookings</a>
     <a href="favorites.html" class="sidebar-link" data-role="traveler-only"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Favorites</a>
-    <a href="clients.html" class="sidebar-link" data-role="agent-only"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Clients</a>
+    <a href="clients.html" class="sidebar-link active" data-role="agent-only"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Clients</a>
     <a href="analytics.html" class="sidebar-link" data-role="agent-only"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Analytics</a>
     <div class="nav-label">Settings</div>
     <a href="settings.html" class="sidebar-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg> Account</a>
@@ -94,47 +90,28 @@
   </header>
   
   <div class="dashboard-content">
-    <div class="page-title">Bookings <a href="404.html" class="btn btn-primary" style="font-size:0.9rem;padding:0.6rem 1.2rem;">New Booking</a></div>
-    
+    <div class="page-title">Client Management</div>
     <div class="panel">
       <div class="panel-header">
-        <div class="filter-tabs">
-          <button class="filter-tab active">All</button>
-          <button class="filter-tab">Upcoming</button>
-          <button class="filter-tab">Past</button>
-          <button class="filter-tab">Cancelled</button>
-        </div>
+        <h2 class="panel-title">Active Clients</h2>
       </div>
       <div class="table-wrapper">
         <table>
-          <thead><tr><th>ID</th><th>Destination</th><th>Dates</th><th>Guests</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Trips Booked</th><th>Status</th></tr></thead>
           <tbody>
             <tr>
-              <td style="font-weight:600;">#BKG-8492</td>
-              <td><div style="display:flex;align-items:center;gap:0.75rem;"><img src="images/dest-maldives.webp" style="width:40px;height:40px;border-radius:8px;object-fit:cover;"><div><div style="font-weight:600;">Maldives Luxury</div><div style="font-size:0.75rem;color:var(--text-dark-secondary)">Luxury Escape</div></div></div></td>
-              <td>Nov 15 - Nov 22, 2026</td>
-              <td>2 Adults</td>
-              <td style="font-weight:600;">$4,999</td>
-              <td><span class="status-badge status-confirmed">Confirmed</span></td>
-              <td><a href="404.html" class="action-link">View Details</a></td>
+              <td><div style="font-weight:600;">Alice Johnson</div></td>
+              <td>alice@example.com</td>
+              <td>+1 (555) 123-4567</td>
+              <td style="font-weight:600;">3</td>
+              <td><span class="status-badge status-confirmed">Active</span></td>
             </tr>
             <tr>
-              <td style="font-weight:600;">#BKG-8491</td>
-              <td><div style="display:flex;align-items:center;gap:0.75rem;"><img src="images/dest-swiss.webp" style="width:40px;height:40px;border-radius:8px;object-fit:cover;"><div><div style="font-weight:600;">Swiss Alps</div><div style="font-size:0.75rem;color:var(--text-dark-secondary)">Adventure Tour</div></div></div></td>
-              <td>Dec 02 - Dec 09, 2026</td>
-              <td>2 Adults, 1 Child</td>
-              <td style="font-weight:600;">$3,199</td>
-              <td><span class="status-badge status-pending">Pending</span></td>
-              <td><a href="404.html" class="action-link">Make Payment</a></td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">#BKG-7210</td>
-              <td><div style="display:flex;align-items:center;gap:0.75rem;"><img src="images/dest-bali.webp" style="width:40px;height:40px;border-radius:8px;object-fit:cover;"><div><div style="font-weight:600;">Bali Wellness</div><div style="font-size:0.75rem;color:var(--text-dark-secondary)">Cultural Retreat</div></div></div></td>
-              <td>Mar 10 - Mar 22, 2026</td>
-              <td>1 Adult</td>
-              <td style="font-weight:600;">$2,100</td>
-              <td><span class="status-badge status-completed">Completed</span></td>
-              <td><a href="404.html" class="action-link">Leave Review</a></td>
+              <td><div style="font-weight:600;">Bob Smith</div></td>
+              <td>bob@example.com</td>
+              <td>+1 (555) 987-6543</td>
+              <td style="font-weight:600;">1</td>
+              <td><span class="status-badge status-pending">Lead</span></td>
             </tr>
           </tbody>
         </table>

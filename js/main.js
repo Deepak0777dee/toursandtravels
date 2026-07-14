@@ -310,61 +310,57 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressContainer = document.querySelector('.why-progress');
 
   if (!whySection || !whySticky || whyCards.length === 0) return;
-
-  // Mobile: no sticky, just show all cards stacked
-  if (window.innerWidth < 768) {
-    whyCards.forEach(card => {
-      card.style.position = 'relative';
-      card.style.opacity = '1';
-      card.style.transform = 'none';
-    });
-    whySticky.style.position = 'relative';
-    whySticky.style.height = 'auto';
-    return;
-  }
-
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
 
   const numCards = whyCards.length;
 
-  // Set section height to give scroll space
-  whySection.style.height = (numCards * 100) + 'vh';
+  let mm = gsap.matchMedia();
 
-  // Pin the sticky container
-  ScrollTrigger.create({
-    trigger: whySection,
-    start: 'top top',
-    end: 'bottom bottom',
-    pin: whySticky,
-    pinSpacing: false,
-    onUpdate: (self) => {
-      const progress = self.progress;
-      const activeIndex = Math.min(Math.floor(progress * numCards), numCards - 1);
+  mm.add("(min-width: 768px)", () => {
+    // Set section height to give scroll space
+    whySection.style.height = (numCards * 100) + 'vh';
 
-      whyCards.forEach((card, i) => {
-        if (i === activeIndex) {
-          gsap.to(card, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' });
-        } else if (i < activeIndex) {
-          gsap.to(card, { opacity: 0, scale: 0.95, y: -30, duration: 0.5, ease: 'power2.out' });
-        } else {
-          gsap.to(card, { opacity: 0, scale: 0.92, y: 30, duration: 0.5, ease: 'power2.out' });
-        }
-      });
+    // Pin the sticky container
+    ScrollTrigger.create({
+      trigger: whySection,
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: whySticky,
+      pinSpacing: false,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const activeIndex = Math.min(Math.floor(progress * numCards), numCards - 1);
 
-      progressDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === activeIndex);
-      });
-    },
-    onEnter: () => { if (progressContainer) progressContainer.classList.add('visible'); },
-    onLeave: () => { if (progressContainer) progressContainer.classList.remove('visible'); },
-    onEnterBack: () => { if (progressContainer) progressContainer.classList.add('visible'); },
-    onLeaveBack: () => { if (progressContainer) progressContainer.classList.remove('visible'); }
+        whyCards.forEach((card, i) => {
+          if (i === activeIndex) {
+            gsap.to(card, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' });
+          } else if (i < activeIndex) {
+            gsap.to(card, { opacity: 0, scale: 0.95, y: -30, duration: 0.5, ease: 'power2.out' });
+          } else {
+            gsap.to(card, { opacity: 0, scale: 0.92, y: 30, duration: 0.5, ease: 'power2.out' });
+          }
+        });
+
+        progressDots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === activeIndex);
+        });
+      },
+      onEnter: () => { if (progressContainer) progressContainer.classList.add('visible'); },
+      onLeave: () => { if (progressContainer) progressContainer.classList.remove('visible'); },
+      onEnterBack: () => { if (progressContainer) progressContainer.classList.add('visible'); },
+      onLeaveBack: () => { if (progressContainer) progressContainer.classList.remove('visible'); }
+    });
+
+    // Show first card
+    gsap.set(whyCards[0], { opacity: 1, scale: 1 });
+
+    return () => {
+      whySection.style.height = 'auto';
+      gsap.set(whyCards, { clearProps: "all" });
+    };
   });
-
-  // Show first card
-  gsap.set(whyCards[0], { opacity: 1, scale: 1 });
 });
 
 /* ---------- Always Start at Top ---------- */
@@ -375,3 +371,45 @@ window.addEventListener('load', () => {
   document.body.scrollTop = 0;
   setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 300);
 });
+
+/* ---------- Destination Filter ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const filters = document.querySelectorAll('.dest-filter');
+  const cards = document.querySelectorAll('.dest-card');
+
+  if (!filters.length || !cards.length) return;
+
+  filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      // Remove active class from all
+      filters.forEach(f => f.classList.remove('active'));
+      // Add active class to clicked
+      filter.classList.add('active');
+
+      const filterText = filter.textContent.trim().toLowerCase();
+
+      cards.forEach(card => {
+        if (filterText === 'all experiences') {
+          card.style.display = 'block';
+          // Optional: re-trigger animations if handled via classes
+          setTimeout(() => card.classList.add('visible'), 50);
+        } else {
+          const metaText = card.querySelector('.dest-card-meta').textContent.toLowerCase();
+          if (metaText.includes(filterText)) {
+            card.style.display = 'block';
+            setTimeout(() => card.classList.add('visible'), 50);
+          } else {
+            card.style.display = 'none';
+            card.classList.remove('visible');
+          }
+        }
+      });
+      
+      // Refresh ScrollTrigger if it exists since layout changed
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 100);
+      }
+    });
+  });
+});
+

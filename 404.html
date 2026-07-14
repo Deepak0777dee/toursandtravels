@@ -20,7 +20,12 @@
   <div class="error-code">404</div>
   <h1 class="error-title">Looks like you're lost</h1>
   <p class="error-desc">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-  <a href="index.html" class="btn btn-primary">Return to Home <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  <div style="display:flex;gap:1rem;justify-content:center;">
+    <button type="button" onclick="history.back()" class="btn btn-outline" style="color:var(--text-light);border-color:rgba(255,255,255,0.2);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:0.3rem;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Go Back
+    </button>
+    <a href="index.html" class="btn btn-primary">Return to Home <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:0.3rem;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
 </div>
 </body>
 </html>
