@@ -1,14 +1,117 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us â€” STACKLY Tours & Travels</title>
+  <title>Contact Us — STACKLY Tours & Travels</title>
   <meta name="description" content="Get in touch with STACKLY Tours & Travels. Reach out for travel inquiries, partnerships, or support." />
   <link rel="stylesheet" href="css/style.css?v=1" />
+  <style>
+    .contact-layout-new {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+    .contact-info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .info-card-premium {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius-2xl);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.3s var(--ease);
+    }
+    .info-card-premium:hover {
+      transform: translateY(-5px);
+    }
+    .info-card-premium::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      pointer-events: none;
+    }
+    .info-card-premium .contact-info-icon {
+      background: rgba(255,255,255,0.05);
+      color: var(--primary-light);
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .info-card-premium .contact-info-label {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+    .info-card-premium .contact-info-val {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .contact-form-section {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      background: var(--bg-light-alt);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+    }
+    .contact-form-wrap {
+      padding: 3.5rem;
+    }
+    .contact-map-wrap {
+      position: relative;
+      min-height: 400px;
+    }
+    .contact-map-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .consult-banner {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      padding: 1.75rem;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255,255,255,0.6);
+      text-align: center;
+    }
+    @media (max-width: 992px) {
+      .contact-form-section {
+        grid-template-columns: 1fr;
+      }
+      .contact-form-wrap {
+        padding: 2rem;
+      }
+      .contact-map-wrap {
+        min-height: 400px;
+      }
+    }
+  </style>
 </head>
 <body>
-<div id="page-loader" role="status" aria-label="Loading"><div class="loader-cyberpunk-content"><div class="cyber-glitch-logo" data-text="STACKLY">STACKLY</div><div class="cyber-progress-container"><div class="cyber-progress-bar"></div></div><div class="cyber-loading-text">SYSTEM INITIATING... <span class="cyber-blink">_</span></div></div></div>
+<div id="page-loader" role="status" aria-label="Loading"><div class="loader-premium-content"><div class="loader-spinner"></div><img src="images/logo-stackly.webp" alt="STACKLY" class="loader-logo" /></div></div>
 
 <nav class="navbar glass-nav">
   <div class="nav-inner">
@@ -40,35 +143,54 @@
 
 <section class="section">
   <div class="container">
-    <div class="contact-grid" style="margin-bottom:2.5rem;">
-      <div data-anim="fade-right">
-        <h2 style="font-family:var(--font-heading);font-size:1.8rem;font-weight:800;margin-bottom:1.5rem;">Send Us a Message</h2>
-        <form id="contactForm">
-          <div class="form-row">
-            <div class="form-group"><label for="contact-name" class="form-label">Full Name <span style="color:var(--danger)">*</span></label><input type="text" id="contact-name" class="form-control" placeholder="John Doe" required autocomplete="name" pattern="[A-Za-z\s]+" oninput="this.value=this.value.replace(/[^A-Za-z\s]/g,'')" /></div>
-            <div class="form-group"><label for="contact-email" class="form-label">Email Address <span style="color:var(--danger)">*</span></label><input type="email" id="contact-email" class="form-control" placeholder="you@email.com" required autocomplete="email" /></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label for="contact-phone" class="form-label">Phone Number</label><input type="tel" id="contact-phone" class="form-control" placeholder="1234567890" autocomplete="tel" pattern="\d{10}" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" /></div>
-            <div class="form-group"><label for="contact-subject" class="form-label">Subject <span style="color:var(--danger)">*</span></label><select id="contact-subject" class="form-control" required><option value="" disabled selected>Select a topic</option><option>Trip Inquiry</option><option>Booking Support</option><option>Partnership</option><option>Custom Tour Request</option><option>Feedback</option><option>Other</option></select></div>
-          </div>
-          <div class="form-group"><label for="contact-message" class="form-label">Your Message <span style="color:var(--danger)">*</span></label><textarea id="contact-message" class="form-control" rows="5" placeholder="Tell us about your dream trip..." required minlength="10"></textarea></div>
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;font-size:0.95rem;padding:0.9rem;">Send Message</button>
-        </form>
-      </div>
-      <div data-anim="fade-left">
-        <div class="contact-info-card" style="height:100%;">
-          <h2 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;">Contact Information</h2>
-          <div class="contact-info-item"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="contact-info-label">Office</div><div class="contact-info-val">MMR Complex, Chinna Thirupathi<br>Salem, Tamil Nadu - 636008</div></div></div>
-          <div class="contact-info-item"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15v1.92z"/></svg></div><div><div class="contact-info-label">Phone</div><div class="contact-info-val"><a href="tel:+917010792745" style="color:inherit;">+91 70107 92745</a></div></div></div>
-          <div class="contact-info-item"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-info-label">Email</div><div class="contact-info-val"><a href="mailto:coach@thestackly.com" style="color:var(--primary);">coach@thestackly.com</a></div></div></div>
-          <div class="contact-info-item"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-info-label">Working Hours</div><div class="contact-info-val">Monâ€“Sat: 9am â€“ 7pm IST<br><span style="color:var(--text-dark-secondary);font-size:0.82rem;">Sunday: 10am â€“ 4pm</span></div></div></div>
+    <div class="contact-layout-new">
+      
+      <!-- Top Info Cards -->
+      <div class="contact-info-cards">
+        <div class="info-card-premium" data-anim="fade-up" data-delay="100">
+          <div class="contact-info-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="contact-info-label">Head Office</div>
+          <div class="contact-info-val">MMR Complex, Chinna Thirupathi<br>Salem, Tamil Nadu - 636008</div>
+        </div>
+        <div class="info-card-premium" data-anim="fade-up" data-delay="200">
+          <div class="contact-info-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15v1.92z"/></svg></div>
+          <div class="contact-info-label">Phone Support</div>
+          <div class="contact-info-val"><a href="tel:+917010792745">+91 70107 92745</a><br><span style="font-size:0.85rem;color:rgba(255,255,255,0.5);">Mon-Sat, 9am-7pm IST</span></div>
+        </div>
+        <div class="info-card-premium" data-anim="fade-up" data-delay="300">
+          <div class="contact-info-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="contact-info-label">Email Us</div>
+          <div class="contact-info-val"><a href="mailto:coach@thestackly.com">coach@thestackly.com</a><br><span style="font-size:0.85rem;color:rgba(255,255,255,0.5);">We typically reply within 24 hours</span></div>
         </div>
       </div>
-    </div>
-    <div class="contact-grid">
-      <div data-anim="fade-right"><div class="consult-card" style="height:100%;display:flex;flex-direction:column;justify-content:center;"><h3 style="font-family:var(--font-heading);font-weight:700;font-size:1.1rem;margin-bottom:0.4rem;">Free Travel Consultation</h3><p style="color:var(--text-dark-secondary);font-size:0.9rem;margin-bottom:1rem;">Not sure where to go? Schedule a free 30-minute call with our travel expert to plan your dream trip.</p><div><a href="404.html" class="btn btn-primary" style="font-size:0.85rem;padding:0.65rem 1.4rem;">Book Free Call</a></div></div></div>
-      <div data-anim="fade-left"><div class="map-embed" style="height:100%;min-height:200px;"><iframe style="height:100%;border-radius:var(--radius-lg);" title="STACKLY Office Location" src="https://maps.google.com/maps?q=MMR%20Complex,%20Chinna%20Thirupathi,%20Salem&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div></div>
+
+      <!-- Bottom Split Layout -->
+      <div class="contact-form-section" data-anim="fade-up" data-delay="200">
+        <div class="contact-form-wrap">
+          <h2 style="font-family:var(--font-heading);font-size:1.8rem;font-weight:800;margin-bottom:1.5rem;">Send a Request</h2>
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group"><label for="contact-name" class="form-label">Full Name <span style="color:var(--danger)">*</span></label><input type="text" id="contact-name" class="form-control" placeholder="John Doe" required autocomplete="name" pattern="[A-Za-z\s]+" oninput="this.value=this.value.replace(/[^A-Za-z\s]/g,'')" /></div>
+              <div class="form-group"><label for="contact-email" class="form-label">Email Address <span style="color:var(--danger)">*</span></label><input type="email" id="contact-email" class="form-control" placeholder="you@email.com" required autocomplete="email" /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="contact-phone" class="form-label">Phone Number</label><input type="tel" id="contact-phone" class="form-control" placeholder="1234567890" autocomplete="tel" pattern="\d{10}" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" /></div>
+              <div class="form-group"><label for="contact-subject" class="form-label">Subject <span style="color:var(--danger)">*</span></label><select id="contact-subject" class="form-control" required><option value="" disabled selected>Select a topic</option><option>Trip Inquiry</option><option>Booking Support</option><option>Partnership</option><option>Custom Tour Request</option><option>Feedback</option><option>Other</option></select></div>
+            </div>
+            <div class="form-group"><label for="contact-message" class="form-label">Your Message <span style="color:var(--danger)">*</span></label><textarea id="contact-message" class="form-control" rows="5" placeholder="Tell us about your dream trip..." required minlength="10"></textarea></div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;font-size:0.95rem;padding:0.9rem;">Submit Request</button>
+          </form>
+        </div>
+        <div class="contact-map-wrap">
+          <iframe title="STACKLY Office Location" src="https://maps.google.com/maps?q=MMR%20Complex,%20Chinna%20Thirupathi,%20Salem&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="consult-banner">
+            <h3 style="font-family:var(--font-heading);font-weight:700;font-size:1.1rem;margin-bottom:0.4rem;color:var(--text-dark);">Free Travel Consultation</h3>
+            <p style="color:var(--text-dark-secondary);font-size:0.85rem;margin-bottom:1rem;">Not sure where to go? Schedule a free 30-minute call with our travel expert.</p>
+            <a href="404.html" class="btn btn-accent" style="width:100%;font-size:0.85rem;padding:0.65rem 1.4rem;">Book Free Call</a>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 </section>
@@ -89,7 +211,7 @@
       </div>
       <div class="footer-col footer-links">
         <h4>Company</h4>
-        <a href="about.html">About Us</a>
+        <a href="about.html">About</a>
         <a href="destinations.html">Destinations</a>
         <a href="experiences.html">Experiences</a>
         <a href="blog.html">Blog</a>
