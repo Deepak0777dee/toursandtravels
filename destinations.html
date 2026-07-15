@@ -80,7 +80,7 @@
 
 <section class="section section--alt">
 <div class="container">
-  <div class="section-header"><h2 class="section-title">Frequently Asked <span class="teal-text">Questions</span></h2></div>
+  <div class="section-header" style="opacity:1;transform:none;"><h2 class="section-title">Frequently Asked <span class="teal-text">Questions</span></h2></div>
   <div class="faq-list">
     <div class="faq-item"><div class="faq-question">When is the best time to visit tropical destinations?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">The best time for tropical destinations like Bali, Maldives, and Thailand is typically November through April, during the dry season. However, each destination has its unique microclimate.</div></div>
     <div class="faq-item"><div class="faq-question">Do you offer customizable itineraries?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-answer">Absolutely! Every STACKLY trip can be fully customized. Our travel experts work with you to create bespoke itineraries tailored to your preferences, budget, and travel style.</div></div>
@@ -151,10 +151,22 @@ document.querySelectorAll('.continent-tab').forEach(tab=>{
     document.querySelectorAll('.dest-page-card').forEach(card => {
       if (filter === 'All') {
         card.style.display = '';
+        card.classList.add('visible');
       } else {
         const badge = card.querySelector('.dest-page-card-badge');
-        card.style.display = (badge && badge.textContent.trim() === filter) ? '' : 'none';
+        const show = badge && badge.textContent.trim() === filter;
+        card.style.display = show ? '' : 'none';
+        if (show) card.classList.add('visible');
       }
+    });
+    // Always keep FAQ section fully visible regardless of filter
+    document.querySelectorAll('.faq-list [data-anim], .section-header [data-anim], .section--alt [data-anim]').forEach(el => {
+      el.classList.add('visible');
+    });
+    // Force FAQ section itself visible
+    document.querySelectorAll('.section--alt .section-header, .section--alt .faq-item').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
     });
   });
 });
